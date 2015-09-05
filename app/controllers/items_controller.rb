@@ -17,6 +17,23 @@ class ItemsController < ApplicationController
     redirect_to "/items/#{@item.id}"
   end
 
+  def edit
+    @item = Item.find(5)
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @item.update_attributes(item_params)
+    @item.save
+    redirect_to "/item/#{@item.id}"
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to "/items"
+  end
+
   private
 
   def item_params
